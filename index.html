@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Event Camera</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="theme-color" content="#111" />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        margin: 0;
+        background: #0b0b0b;
+        color: #fafafa;
+      }
+      header,
+      footer {
+        padding: 12px 16px;
+        background: #111;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      main {
+        padding: 16px;
+        display: grid;
+        gap: 12px;
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .card {
+        background: #171717;
+        border: 1px solid #2a2a2a;
+        border-radius: 16px;
+        padding: 16px;
+      }
+      button {
+        background: #fff;
+        color: #000;
+        border: none;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      video,
+      canvas {
+        width: 100%;
+        border-radius: 12px;
+        background: #000;
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      input,
+      select {
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid #333;
+        background: #0f0f0f;
+        color: #fff;
+      }
+      .pill {
+        font-size: 12px;
+        padding: 4px 8px;
+        border: 1px solid #333;
+        border-radius: 999px;
+      }
+      .ok {
+        color: #9be39b;
+      }
+      .warn {
+        color: #ffda6a;
+      }
+      .err {
+        color: #ff8b8b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <strong>Event Camera</strong>
+        <span id="status" class="pill">offline</span>
+        <span id="remaining" class="pill">—</span>
+      </div>
+    </header>
+    <main>
+      <section class="card">
+        <div class="row">
+          <label
+            >Event ID <input id="eventId" placeholder="e.g. 3f9a1c2d"
+          /></label>
+          <label
+            >Name <input id="displayName" placeholder="Your name or nickname"
+          /></label>
+          <button id="joinBtn">Join</button>
+        </div>
+        <p id="joinMsg"></p>
+      </section>
+
+      <section id="camSection" class="card" style="display: none">
+        <video id="preview" playsinline autoplay muted></video>
+        <canvas id="canvas" style="display: none"></canvas>
+        <div
+          class="row"
+          style="justify-content: space-between; margin-top: 8px"
+        >
+          <button id="snapBtn" disabled>Take Photo</button>
+          <button id="flipBtn">Flip</button>
+          <button id="uploadQueueBtn">Upload Queue</button>
+        </div>
+        <p id="msg"></p>
+      </section>
+    </main>
+    <footer>
+      <small>Install from your browser menu to use offline.</small>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
