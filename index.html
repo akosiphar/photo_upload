@@ -125,11 +125,16 @@
     </footer>
 
     <script>
-      fetch("https://photo-upload-nine.vercel.app/api/proxy")
+      fetch("https://photo-upload-nine.vercel.app/api/proxy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "ping" }), // or whatever action your Apps Script expects
+      })
         .then((res) => res.json())
         .then((data) => console.log("Data from Apps Script:", data))
         .catch((err) => console.error("Error:", err));
     </script>
+
     <script type="module" src="./app.js"></script>
   </body>
 </html>
