@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Event Camera</title>
-    <link rel="manifest" href="./frontend/manifest.webmanifest" />
+    <link rel="manifest" href="./manifest.webmanifest" />
     <meta name="theme-color" content="#111" />
     <style>
       body {
@@ -125,7 +125,7 @@
     </footer>
 
     <script>
-      fetch("https://photo-upload-aifl.vercel.app/my-proxy/api/proxy")
+      fetch("https://photo-upload-nine.vercel.app/api/proxy")
         .then((res) => res.json())
         .then((data) => console.log("Data from Apps Script:", data))
         .catch((err) => console.error("Error:", err));
