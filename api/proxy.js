@@ -1,32 +1,29 @@
-// api/proxy.js
+// /api/proxy.js
 export default async function handler(req, res) {
-  const GOOGLE_APPS_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzWUVF8cukeJRf8IS5nqcPIIBrAPa8BOyCAFrVrBv_-SNynFOUd4Fr9hJHs_DJ_D9xQkw/exec";
+  if (req.method !== "POST") {
+    return res.status(405).json({ ok: false, error: "Method not allowed" });
+  }
 
   try {
-    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-      method: req.method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: req.method !== "GET" ? JSON.stringify(req.body) : undefined,
+    const scriptUrl = process.env.APPS_SCRIPT_URL; // put your full Apps Script URL in .env
+    const response = await fetch(scriptUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(req.body), // forward the same payload
     });
 
-    // Try parsing JSON response
     const text = await response.text();
     let data;
     try {
       data = JSON.parse(text);
-    } catch {
-      data = { error: "Invalid JSON from Apps Script", raw: text };
+    } catch (err) {
+      return res
+        .status(500)
+        .json({ ok: false, error: "Invalid JSON from Apps Script", raw: text });
     }
 
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.status(response.ok ? 200 : response.status).json(data);
+    res.status(200).json(data);
   } catch (err) {
-    res
-      .status(500)
-      .json({ error: "Proxy failed", details: err.message || err.toString() });
+    res.status(500).json({ ok: false, error: err.message });
   }
 }
