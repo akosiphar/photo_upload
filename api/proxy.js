@@ -1,7 +1,7 @@
 // api/proxy.js
 export default async function handler(req, res) {
   const GOOGLE_APPS_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbwDX5ec7zDfyimKgZwgCI42o4dGPjL6no5nOEleeg4hU2x7hgwb3EGxHBjP06ARC98a5Q/exec";
+    "https://script.google.com/macros/s/AKfycbyEoNbUjEwsRfmfTZh_J-rAQPHH1CZgUMjwcEuCnV3gJLKslHNSMCnRetei-SbyiMzwVg/exec";
 
   try {
     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
