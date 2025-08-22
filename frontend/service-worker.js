@@ -1,12 +1,12 @@
 // Tiny cache‑first SW for offline shell + queued uploads handled by the page
 const CACHE = "pov-sw-v1";
 const ASSETS = [
-  "./",
-  "./index.html",
-  "./app.js",
-  "./manifest.webmanifest",
-  "./icon-192.png",
-  "./icon-512.png",
+  "./frontend/",
+  "./frontend/index.html",
+  "./frontend/app.js",
+  "./frontend/manifest.webmanifest",
+  "./frontend/icon-192.png",
+  "./frontend/icon-512.png",
 ];
 
 self.addEventListener("install", (e) => {
