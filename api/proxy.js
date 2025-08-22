@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   try {
     // Replace with your Google Apps Script URL
     const apiUrl =
-      "https://script.google.com/macros/s/AKfycbwrZc5hiNyXJOvuQBaTVU6Ss_qalX5p4YKGgbOVf9egIheGO9py4ha4A-WRTlxSoM8E/exec";
+      "https://script.google.com/macros/s/AKfycbw4IsFU8TfzoziATBz2mSwBU7ZW9Huk1KYxY3TwsvGxAK8oep_Glpz0B4_goTbrYSk97Q/exec";
 
     const response = await fetch(apiUrl);
     const data = await response.json();
