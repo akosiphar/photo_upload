@@ -1,7 +1,6 @@
 // Basic PWA front‑end for POV‑style uploads
 const FRONTEND_CONFIG = {
-  BACKEND_URL:
-    "https://script.google.com/macros/s/AKfycbw4IsFU8TfzoziATBz2mSwBU7ZW9Huk1KYxY3TwsvGxAK8oep_Glpz0B4_goTbrYSk97Q/exec",
+  BACKEND_URL: "./api/proxy",
 };
 
 // Register SW
