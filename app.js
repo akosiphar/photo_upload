@@ -112,7 +112,7 @@ el("joinBtn").addEventListener("click", async () => {
   const displayName = el("displayName").value.trim() || "Anonymous";
   if (!eventId) return (el("joinMsg").textContent = "Enter an Event ID");
 
-  const res = await api({ action: "register", eventId, displayName });
+  const res = await api({ action: "join", eventId, displayName });
   if (!res.ok) {
     el("joinMsg").textContent = res.error || "Join failed";
     return;
