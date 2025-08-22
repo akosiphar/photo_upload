@@ -1,20 +1,23 @@
 export default async function handler(req, res) {
   try {
-    // Replace with your Google Apps Script URL
+    // Replace with your actual Google Apps Script web app URL (the /exec one)
     const apiUrl =
       "https://script.google.com/macros/s/AKfycbw4IsFU8TfzoziATBz2mSwBU7ZW9Huk1KYxY3TwsvGxAK8oep_Glpz0B4_goTbrYSk97Q/exec";
 
-    // Google Apps Script sometimes returns plain text instead of JSON
-    const text = await response.text();
+    // Fetch from Apps Script
+    const resp = await fetch(apiUrl);
 
-    // Try to parse JSON, but fall back to text
+    // Apps Script might return JSON or plain text
+    const text = await resp.text();
+
     let data;
     try {
-      data = JSON.parse(text);
+      data = JSON.parse(text); // Try JSON
     } catch {
-      data = { raw: text };
+      data = { raw: text }; // Fallback if not valid JSON
     }
 
+    // Add CORS headers
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
